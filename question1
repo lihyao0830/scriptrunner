@@ -1,0 +1,14 @@
+import com.atlassian.jira.component.ComponentAccessor
+
+def issueManager = ComponentAccessor.issueManager
+def cfA = ComponentAccessor.getCustomFieldManager().getCustomFieldObject("customfield_10201") // this is my custom text field A
+def cfB = ComponentAccessor.getCustomFieldManager().getCustomFieldObject("customfield_10202") // this is my custom text field B
+def issue = issueManager.getIssueByCurrentKey("TES-2") // your issue key here
+
+// convert the value to int
+def A = Integer.parseInt((issue.getCustomFieldValue(cfA) ?: 0).toString())
+def B = Integer.parseInt((issue.getCustomFieldValue(cfB) ?: 0).toString())
+
+Integer sum = (A ?: 0) + (B ?: 0) 
+
+return sum
