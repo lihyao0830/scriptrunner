@@ -1,0 +1,10 @@
+import com.atlassian.jira.component.ComponentAccessor
+
+def issueManager = ComponentAccessor.issueManager
+def issue = issueManager.getIssueByCurrentKey("TES-2") // your issue key here
+
+
+// Question: A scripted field that can count the number of sub-tasks in an issue;
+import com.atlassian.jira.issue.Issue
+def count = issue.getSubTaskObjects().size() 
+return count
